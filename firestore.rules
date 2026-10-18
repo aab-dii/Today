@@ -1,0 +1,68 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+    function isSelf(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    // Profil pengguna + relasi follow (subkoleksi di bawah profil).
+    match /users/{uid} {
+      allow read: if signedIn();
+      allow write: if isSelf(uid);
+
+      match /following/{targetUid} {
+        allow read: if signedIn();
+        allow write: if isSelf(uid);
+      }
+      match /followers/{followerUid} {
+        allow read: if signedIn();
+        allow write: if isSelf(followerUid);
+      }
+    }
+
+    // Opini publik. likeCount/commentCount boleh diubah pengguna lain (via transaksi).
+    match /opinions/{opinionId} {
+      allow read: if signedIn();
+      allow create: if signedIn() && request.resource.data.authorUid == request.auth.uid;
+      allow delete: if signedIn() && resource.data.authorUid == request.auth.uid;
+      allow update: if signedIn() &&
+        request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['likeCount', 'commentCount']);
+
+      match /likes/{uid} {
+        allow read: if signedIn();
+        allow write: if isSelf(uid);
+      }
+      match /comments/{commentId} {
+        allow read: if signedIn();
+        allow create: if signedIn() && request.resource.data.authorUid == request.auth.uid;
+        allow update, delete: if signedIn() && resource.data.authorUid == request.auth.uid;
+      }
+    }
+
+    // Circle (klub nonton via kode undangan). Dokumen dapat dibaca agar kode
+    // undangan bisa dicari; keanggotaan hanya boleh mengubah dirinya sendiri.
+    match /circles/{circleId} {
+      allow read: if signedIn();
+      allow create: if signedIn() &&
+        request.resource.data.ownerUid == request.auth.uid &&
+        request.resource.data.memberUids == [request.auth.uid];
+      allow update: if signedIn() &&
+        request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['memberUids', 'memberCount']) &&
+        (request.auth.uid == resource.data.ownerUid ||
+          request.resource.data.memberUids.hasAny([request.auth.uid]) ||
+          resource.data.memberUids.hasAny([request.auth.uid]));
+      allow delete: if signedIn() && resource.data.ownerUid == request.auth.uid;
+
+      match /members/{memberUid} {
+        allow read: if signedIn();
+        allow write: if isSelf(memberUid);
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="navy_900">#FF070F2B</color>
+    <color name="indigo_700">#FF1B1A55</color>
+    <color name="slate_500">#FF535C91</color>
+    <color name="lavender_300">#FF9290C3</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
