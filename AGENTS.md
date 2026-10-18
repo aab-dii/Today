@@ -15,7 +15,8 @@ File ini adalah **pintu masuk konteks**. Baca file ini + dokumen yang dirujuk se
 | [docs/ROADMAP.md](docs/ROADMAP.md) | Urutan kerja P0–P4 dengan rujukan file |
 | [docs/DESAIN_APLIKASI.md](docs/DESAIN_APLIKASI.md) | Rancangan UX/IA: sitemap, rincian per halaman, state, prioritas fitur |
 | [docs/CATATAN_KEPUTUSAN.md](docs/CATATAN_KEPUTUSAN.md) | Keputusan desain terbaru (K1–K8) + pertanyaan terbuka (Q1–Q4) |
-| [README.md](README.md) | Setup, build, tech stack |
+| [README.md](README.md) | Pengenalan aplikasi, fitur, setup, build, tech stack |
+| [docs/PROGRES.md](docs/PROGRES.md) | Catatan kemajuan implementasi per fase (status terbaru) |
 
 > **Presedensi dokumen**: bila `CATATAN_KEPUTUSAN.md` bertentangan dengan `DESAIN_APLIKASI.md`, **catatan keputusan yang menang** (lebih baru). Keputusan yang sudah final lalu diturunkan ke PRD/Roadmap.
 
