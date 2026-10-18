@@ -19,3 +19,6 @@ local.properties
 # Firebase config (berisi kredensial project — jangan di-commit)
 google-services*.json
 /app/google-services.json
+
+# Dokumen internal (cukup lokal — jangan di-commit ke repo)
+docs/

@@ -91,17 +91,6 @@ Today/
 ./gradlew lint                 # Android lint
 ```
 
-## Dokumentasi
-
-| Dokumen | Isi |
-|---|---|
-| [PRD](docs/PRD.md) | Visi, fitur per fase, user story & acceptance criteria |
-| [Arsitektur](docs/ARSITEKTUR.md) | Stack, module graph, alur data, jebakan kode |
-| [Roadmap](docs/ROADMAP.md) | Urutan kerja per fase |
-| [Desain Aplikasi](docs/DESAIN_APLIKASI.md) | Rancangan UX/IA per halaman |
-| [Catatan Keputusan](docs/CATATAN_KEPUTUSAN.md) | Keputusan desain & pertanyaan terbuka |
-| [Status Pengembangan](docs/PROGRES.md) | Catatan kemajuan implementasi |
-
 ## Atribusi
 
 Metadata film, serial, dan anime berasal dari [TMDB](https://www.themoviedb.org/).

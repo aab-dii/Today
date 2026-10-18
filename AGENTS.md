@@ -20,6 +20,8 @@ File ini adalah **pintu masuk konteks**. Baca file ini + dokumen yang dirujuk se
 
 > **Presedensi dokumen**: bila `CATATAN_KEPUTUSAN.md` bertentangan dengan `DESAIN_APLIKASI.md`, **catatan keputusan yang menang** (lebih baru). Keputusan yang sudah final lalu diturunkan ke PRD/Roadmap.
 
+> **Catatan repo**: seluruh `docs/` bersifat lokal (**gitignored**) — tetap ada di mesin, tapi tidak di-commit. Yang publik di repo hanya `README.md` (pengantar produk) dan `AGENTS.md` ini.
+
 ## Fakta cepat
 - **Module**: `:app` (shell + seluruh UI Compose), `:core` (domain+data: TMDB+Room+Paging+diary/watchlist/daftar/stats, Koin), `:social` (**baru di P4.1** — domain+data sosial Firebase: auth/profil/opini/like/komentar/follow; **tanpa UI**). Modul `:favorite` **sudah dihapus** (dulu dynamic feature).
 - **Stack nyata**: Kotlin 2.0, AGP 8.6, Koin, Retrofit+Gson, Room+Paging, Coil, **Jetpack Compose** (Material3, navigation-compose, koin-compose).
