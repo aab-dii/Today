@@ -1,8 +1,31 @@
 # Today
 
+[![CI](https://github.com/aab-dii/Today/actions/workflows/ci.yml/badge.svg)](https://github.com/aab-dii/Today/actions/workflows/ci.yml)
+![Kotlin](https://img.shields.io/badge/Kotlin-2.0.0-7F52FF?logo=kotlin&logoColor=white)
+![Compose](https://img.shields.io/badge/Jetpack%20Compose-Material%203-4285F4?logo=jetpackcompose&logoColor=white)
+![minSdk](https://img.shields.io/badge/minSdk-24-3DDC84?logo=android&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 **Today** adalah aplikasi Android untuk penonton Indonesia: catat apa yang kamu tonton hari ini — film, serial, maupun anime — sebagai **diary nonton yang personal**. Rating, mood, catatan, dan siapa yang nonton bareng; lalu lihat bagaimana penilaianmu berubah saat menonton ulang.
 
 Pendekatannya **log-first**: aplikasi membuka dengan pertanyaan *"hari ini nonton apa?"*, bukan dengan feed orang lain.
+
+> **Coba langsung:** unduh APK dari [Releases](https://github.com/aab-dii/Today/releases) — tanpa perlu menyiapkan API key.
+
+## Screenshot
+
+| | | |
+|---|---|---|
+| ![Beranda](screenshots/01-beranda.png) | ![Jelajah](screenshots/02-jelajah.png) | ![Watchlist](screenshots/03-watchlist.png) |
+| **Beranda** | **Jelajah** | **Watchlist** |
+| ![Detail](screenshots/07-detail.png) | ![Statistik](screenshots/08-statistik.png) | ![Rekap](screenshots/09-rekap.png) |
+| **Detail judul** | **Statistik** | **Rekap Tahunan** |
+| ![Feed](screenshots/10-feed.png) | ![Komentar](screenshots/11-komentar.png) | ![Profil](screenshots/05-profil.png) |
+| **Feed Komunitas** | **Komentar (spoiler)** | **Profil** |
+
+**Demo menit pertama** — dari beranda ke simpan tontonan:
+
+![Demo](screenshots/demo.gif)
 
 ## Fitur
 
@@ -87,9 +110,36 @@ Today/
 
 ```bash
 ./gradlew :app:assembleDebug   # build debug APK
-./gradlew test                 # unit test (core, social, app)
+./gradlew test                 # 142 unit test (core, social, app)
 ./gradlew lint                 # Android lint
 ```
+
+| Modul | Test |
+|---|---|
+| `:core` | 85 |
+| `:social` | 22 |
+| `:app` | 35 |
+| **Total** | **142** |
+
+CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) menjalankan unit test,
+Android lint, dan `assembleDebug` di setiap push ke `main`.
+
+## Arsitektur
+
+Tiga modul, batas yang jelas: `:app` memegang seluruh UI Compose, `:core` memegang
+domain + data katalog dan diary, `:social` memegang domain + data Firebase tanpa UI.
+
+```
+app ──▶ core (domain/data: TMDB, Room, diary) ──▶ Room / TMDB API
+ └───▶ social (domain/data: Firebase)         ──▶ Firestore / Firebase Auth
+```
+
+Prinsipnya offline-first: katalog diambil lewat `RemoteMediator` ke Room sehingga
+tetap terbaca tanpa jaringan, sementara diary, watchlist, dan daftar memang tidak
+pernah menyentuh server. Fitur komunitas jadi lapisan di atasnya dan tidak pernah
+menjadi syarat untuk mencatat tontonan.
+
+Rincian lengkap ada di [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Atribusi
 
@@ -99,4 +149,4 @@ Metadata film, serial, dan anime berasal dari [TMDB](https://www.themoviedb.org/
 
 ## Lisensi
 
-Belum ditentukan.
+[MIT](LICENSE) © 2026 Muhammad Abdillah Abdi.

@@ -24,8 +24,19 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
-      - name: Unit tests (core + social)
-        run: ./gradlew :core:testDebugUnitTest :social:testDebugUnitTest --stacktrace
+      - name: Unit tests (core + social + app)
+        run: ./gradlew :core:testDebugUnitTest :social:testDebugUnitTest :app:testDebugUnitTest --stacktrace
+
+      - name: Android lint
+        run: ./gradlew :app:lintDebug --stacktrace
 
       - name: Assemble debug APK
         run: ./gradlew :app:assembleDebug --stacktrace
+
+      - name: Upload debug APK
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 14
