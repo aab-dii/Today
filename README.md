@@ -18,10 +18,12 @@ Pendekatannya **log-first**: aplikasi membuka dengan pertanyaan *"hari ini nonto
 |---|---|---|
 | ![Beranda](screenshots/01-beranda.png) | ![Jelajah](screenshots/02-jelajah.png) | ![Watchlist](screenshots/03-watchlist.png) |
 | **Beranda** | **Jelajah** | **Watchlist** |
-| ![Detail](screenshots/07-detail.png) | ![Statistik](screenshots/08-statistik.png) | ![Rekap](screenshots/09-rekap.png) |
-| **Detail judul** | **Statistik** | **Rekap Tahunan** |
-| ![Feed](screenshots/10-feed.png) | ![Komentar](screenshots/11-komentar.png) | ![Profil](screenshots/05-profil.png) |
-| **Feed Komunitas** | **Komentar (spoiler)** | **Profil** |
+| ![Detail](screenshots/07-detail.png) | ![Catat tontonan](screenshots/06-catat-tontonan.png) | ![Statistik](screenshots/08-statistik.png) |
+| **Detail judul** | **Catat tontonan** | **Statistik** |
+| ![Rekap](screenshots/09-rekap.png) | ![Feed](screenshots/10-feed.png) | ![Komentar](screenshots/11-komentar.png) |
+| **Rekap Tahunan** | **Feed Komunitas** | **Komentar (spoiler)** |
+| ![Daftar](screenshots/04-daftar.png) | ![Profil](screenshots/05-profil.png) | |
+| **Daftar kustom** | **Profil** | |
 
 **Demo menit pertama** — dari beranda ke simpan tontonan:
 
